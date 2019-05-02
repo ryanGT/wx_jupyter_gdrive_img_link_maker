@@ -14,6 +14,16 @@ import copy
 #dbpath = "/Users/kraussry/Google Drive/journal_and_work_log.csv"
 #mydb = txt_database.db_from_file(dbpath)
 
+
+# share --> copy link:
+# https://drive.google.com/file/d/1sRRu8WPs9yBBOEC7OkComZfUd5P5h7CY/view?usp=sharing
+#
+# other way:
+# https://drive.google.com/open?id=1sRRu8WPs9yBBOEC7OkComZfUd5P5h7CY
+#
+# desired output:
+# <img src="https://drive.google.com/uc?id=1sRRu8WPs9yBBOEC7OkComZfUd5P5h7CY" width=300px>
+
 def krauss_to_ascii(textin):
     """My attempt to convert a wx textctrl output to ascii intelligently.
        Note that u'\xa0' is an unbreakable space."""
@@ -76,8 +86,10 @@ class MyApp(wx.App):
         print(textin)
         #if wx.TheClipboard.Open():
         #https://drive.google.com/open?id=123NBGLdhsNUt9AW8simv8GpzlsLyr2EI
-        textin = textin.replace("/open?", "/uc?")
-        textout = '<img src="%s" width=300px>' % textin
+        # Old:
+        #textin = textin.replace("/open?", "/uc?")
+        #textout = '<img src="%s" width=300px>' % textin
+        textout = bb_utils.jupyter_notebook_gdrive_img_link(textin)
         print('textout = ')
         print(textout)
         self.set_out(textout)
